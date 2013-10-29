@@ -1,0 +1,22 @@
+%h1 historical sources
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Subject
+      %th
+      %th
+      %th
+
+  - @historical_sources.each do |historical_source|
+    %tr
+      %td= historical_source.name
+      %td= historical_source.subject
+      %td= link_to 'Show', historical_source
+      %td= link_to 'Edit', edit_historical_source_path(historical_source)
+      %td= link_to 'Destroy', historical_source, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Historical source', new_historical_source_path

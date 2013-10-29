@@ -14,4 +14,13 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
+//= require chosen-jquery
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+//= require backbone-associations-min
+//= require backbone.marionette
+//= require backbone/web_of_history
+//= require backbone/models/shapefile
 //= require_tree .

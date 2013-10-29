@@ -1,0 +1,37 @@
+#command-bar.row
+  .command-bar-left.col-md-8
+    %h1 historical events
+  .command-bar-right.col-md-4.row
+    = button_to "Timeline", timeline_historical_events_path, class: "btn", method: :get
+    = button_to "Map", map_historical_events_path, class: "btn", method: :get
+    = button_to 'New Event', new_historical_event_path, class: "btn", method: :get
+
+%table.table.table-striped.linkable-table
+  %thead
+    %tr
+      %th Historical source
+      %th Title
+      %th Date precision
+      %th Event start date
+      %th Event end date
+      %th Description
+      %th Lat
+      %th Lon
+      %th
+      %th
+
+  %tbody
+    - @historical_events.each do |historical_event|
+      %tr{:id => "historical_event-#{historical_event.id}",
+          :class => "linkable-table-row",
+          :data => { :rowlink => "#{historical_event_path(historical_event)}" } }
+        %td= historical_event.historical_source.name
+        %td= historical_event.title
+        %td= historical_event.date_precision
+        %td= historical_event.event_start_date
+        %td= historical_event.event_end_date
+        %td= historical_event.description
+        %td= historical_event.lat
+        %td= historical_event.lon
+        %td= link_to 'Edit', edit_historical_event_path(historical_event)
+        %td= link_to 'Delete', historical_event, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"

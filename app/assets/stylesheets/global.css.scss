@@ -1,0 +1,52 @@
+/* application / global styles */
+
+h2.top-header {
+  margin-top: 0px;
+}
+
+h1,h3 {
+  margin-top: 0px;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+#command-bar {
+  vertical-align: middle;
+
+  .command-bar-left {
+    //float: left;
+    padding-left: 30px;
+    h1 {
+      margin-top: 0px;
+    }
+  }
+
+  .command-bar-right {
+    //float: right;
+    padding-right: 30px;
+    form {
+      display: inline-block;
+    }
+    button {
+      display: inline-block;
+    }
+  }
+
+  .command-bar-clear {
+    clear: both;
+  }
+}
+
+.list-group-rhs {
+  text-align: right;
+}
+
+table.linkable-table tr.linkable-table-row {
+  cursor: pointer;
+}
+
+.form-actions {
+  margin: 10px 0px 10px 0px;
+}

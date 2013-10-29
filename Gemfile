@@ -8,14 +8,21 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-gem 'bootstrap-sass', '~> 2.3.2.2'
+gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
+gem 'compass-rails', github: 'Compass/compass-rails'
 gem 'cancan'
 gem 'devise'
 gem 'devise_invitable'
 gem 'figaro'
 gem 'haml-rails'
 gem 'rolify'
-gem 'simple_form', '>= 3.0.0.rc'
+gem 'simple_form', github: 'jgerrish/simple_form'
+
+gem 'rails-backbone', github: 'jgerrish/backbone-rails'
+gem 'marionette-rails', github: 'jgerrish/marionette-rails'
+gem 'backbone-associations-rails'
+
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
@@ -33,3 +40,28 @@ group :test do
   gem 'minitest-spec-rails'
   gem 'minitest-wscolor'
 end
+
+# File upload gem
+gem 'carrierwave'
+
+gem 'ffi-geos'
+
+# rgeo gem for dealing with geolocation data
+gem 'rgeo'
+
+# rgeo-geojson gem to read/write GeoJSON files
+gem 'rgeo-geojson'
+
+# rgeo-shapefile gem to read/write ESRI shapefiles
+gem 'rgeo-shapefile'
+
+# background processing to convert shapefiles
+gem 'resque'
+
+# Shapefile to GeoJSON conversion
+gem 'gdal'
+
+# manage zip files for unpacking shapefiles
+gem 'rubyzip'
+
+gem 'chosen-rails'

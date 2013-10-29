@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Historical source:
+  = @historical_event.historical_source.name
+%p
+  %b Title:
+  = @historical_event.title
+%p
+  %b Date precision:
+  = @historical_event.date_precision
+%p
+  %b Event start date:
+  = @historical_event.event_start_date.as_historical_date('Y')
+%p
+  %b Event end date:
+  = @historical_event.event_end_date.as_historical_date('Y')
+%p
+  %b Description:
+  = @historical_event.description
+%p
+  %b Lat:
+  = @historical_event.lat
+%p
+  %b Lon:
+  = @historical_event.lon
+
+= link_to 'Edit', edit_historical_event_path(@historical_event)
+\|
+= link_to 'Back', historical_events_path

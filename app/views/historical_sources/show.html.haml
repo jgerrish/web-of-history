@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @historical_source.name
+%p
+  %b Subject:
+  = @historical_source.subject
+
+= link_to 'Edit', edit_historical_source_path(@historical_source)
+\|
+= link_to 'Back', historical_sources_path

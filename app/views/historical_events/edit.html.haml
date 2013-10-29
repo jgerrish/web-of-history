@@ -1,0 +1,11 @@
+%h1
+  - if @historical_event.title
+    Editing #{@historical_event.title}
+  - else
+    Editing historical event
+
+= render 'form'
+
+= link_to 'Show', @historical_event
+\|
+= link_to 'Back', historical_events_path

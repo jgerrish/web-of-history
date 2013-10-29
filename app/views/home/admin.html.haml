@@ -1,0 +1,6 @@
+.row
+  .col-md-6
+    = render partial: "users/list", locals: { users: @users }
+
+  .col-md-6
+    = render partial: "shapefiles/list", locals: { shapefiles: @shapefiles }

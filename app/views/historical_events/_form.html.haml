@@ -1,0 +1,20 @@
+= simple_form_for(@historical_event) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :historical_source
+    = f.input :title
+    = f.input :date_precision
+    = f.input :event_date, label: 'Event Date', input_html: { class: 'span6' }, wrapper_html: {class: 'controls controls-row'} do
+      = f.input_field :event_start_date, as: :string, class: 'span2'
+      %span.span1 to
+      = f.input_field :event_end_date, as: :string, class: 'span2'
+    = f.input :description
+    = f.input :lat
+    = f.input :lon
+
+    = f.association :shapefiles, collection: Shapefile.json, include_blank: true, |
+                    input_html: { class: 'chosen-select form-control' }
+
+  .form-actions
+    = f.button :submit

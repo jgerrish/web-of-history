@@ -1,0 +1,9 @@
+= simple_form_for(@historical_source) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :subject
+
+  .form-actions
+    = f.button :submit

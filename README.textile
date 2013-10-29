@@ -31,6 +31,16 @@ h2. Database
 
 This application uses SQLite with ActiveRecord.
 
+Basic generators for the schema:
+
+# historical events and metadata
+# date_precision gives the date precision (year, month or day)
+rails g scaffold HistoricalEvent historical_source:references title:string date_precision:string event_start_date:date event_end_date:date description:text lat:float lon:float -f
+
+# source documents / courses
+rails g scaffold HistoricalSource name:string subject:string
+
+
 h2. Development
 
 * Template Engine: Haml

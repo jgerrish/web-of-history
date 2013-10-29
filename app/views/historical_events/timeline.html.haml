@@ -1,0 +1,16 @@
+= javascript_include_tag "/assets/TimelineJS/storyjs-embed.js"
+
+:javascript
+  var embed_path = "/assets/TimelineJS/";
+  $(document).ready(function() {
+    createStoryJS({
+      type: 'timeline',
+      width: '1024',
+      height: '500',
+      source: "#{timeline_historical_events_path(:format => "json")}",
+      embed_id: 'timeline'
+    });
+  });
+
+
+#timeline

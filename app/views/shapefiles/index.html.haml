@@ -1,0 +1,23 @@
+%h1 Listing shapefiles
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Shapefile
+    %th
+    %th
+    %th
+
+  - @shapefiles.each do |shapefile|
+    %tr
+      %td= shapefile.name
+      %td= shapefile.description
+      %td= shapefile.shapefile
+      %td= link_to 'Show', shapefile
+      %td= link_to 'Edit', edit_shapefile_path(shapefile)
+      %td= link_to 'Destroy', shapefile, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Shapefile', new_shapefile_path

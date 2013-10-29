@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  historical_source_id: 
+  title: MyString
+  date_precision: MyString
+  event_start_date: 2013-10-01
+  event_end_date: 2013-10-01
+  description: MyText
+  lat: 1.5
+  lon: 1.5
+
+two:
+  historical_source_id: 
+  title: MyString
+  date_precision: MyString
+  event_start_date: 2013-10-01
+  event_end_date: 2013-10-01
+  description: MyText
+  lat: 1.5
+  lon: 1.5

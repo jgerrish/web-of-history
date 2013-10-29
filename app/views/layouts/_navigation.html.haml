@@ -1,17 +1,31 @@
-= link_to "Web Of History", root_path, :class => 'brand'
-%ul.nav
-  - if user_signed_in?
-    %li
-      = link_to 'Logout', destroy_user_session_path, :method=>'delete'
-  - else
-    %li
-      = link_to 'Login', new_user_session_path
-  - if user_signed_in?
-    %li
-      = link_to 'Edit account', edit_user_registration_path
-    - if current_user.has_role? :admin
+%nav.navbar.navbar-default{:role => "navigation"}
+  .navbar-header
+    = link_to "Web Of History", root_path, :class => 'navbar-brand'
+  %ul.nav.navbar-nav
+    - if user_signed_in?
       %li
-        = link_to 'Admin', users_path
-  - else
-    %li
-      = link_to 'Sign up', new_user_registration_path
+        = link_to 'sources', historical_sources_path
+
+    - if user_signed_in?
+      %li
+        = link_to 'events', historical_events_path
+
+
+  %ul.nav.navbar-nav.navbar-right
+    - if user_signed_in?
+      - if current_user.has_role? :admin
+        %li
+          = link_to 'Admin', admin_path
+      %li
+        = link_to 'Settings', edit_user_registration_path
+
+    - else
+      %li
+        = link_to 'Sign up', new_user_registration_path
+
+    - if user_signed_in?
+      %li
+        = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+    - else
+      %li
+        = link_to 'Login', new_user_session_path

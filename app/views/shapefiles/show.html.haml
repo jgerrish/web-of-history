@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @shapefile.name
+%p
+  %b Description:
+  = @shapefile.description
+%p
+  %b Shapefile:
+  = @shapefile.shapefile
+
+= link_to 'Edit', edit_shapefile_path(@shapefile)
+\|
+= link_to 'Back', shapefiles_path

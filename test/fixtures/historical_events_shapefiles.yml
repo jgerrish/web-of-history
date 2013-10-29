@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  historical_event_id: 
+  shapefile_id: 
+
+two:
+  historical_event_id: 
+  shapefile_id: 

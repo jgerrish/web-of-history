@@ -1,0 +1,10 @@
+= simple_form_for(@shapefile) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :description
+    = f.file_field :shapefile
+
+  .form-actions
+    = f.button :submit, class: "btn btn-primary"

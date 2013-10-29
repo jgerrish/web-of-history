@@ -1,0 +1,23 @@
+#command-bar.row
+  .command-bar-left.col-md-8
+    %h3 shapefiles
+  .command-bar-right.col-md-4.row
+    = button_to 'New Shapefile', new_shapefile_path, class: "btn", method: :get
+
+%table.table.table-condensed.table-striped.linkable-table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th
+      %th
+
+  %tbody
+    - shapefiles.each do |shapefile|
+      %tr{:id => "shapefile-#{shapefile.id}",
+          :class => "linkable-table-row",
+          :data => { :rowlink => "#{shapefile_path(shapefile)}" } }
+        %td= shapefile.name
+        %td= shapefile.description
+        %td= link_to 'Edit', edit_shapefile_path(shapefile)
+        %td= link_to 'Delete', shapefile, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
