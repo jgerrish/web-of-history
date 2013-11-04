@@ -21,12 +21,25 @@ class Shapefile < ActiveRecord::Base
 
   MIME::Types.add(gis_mime_type)
 
+  # Load shapefile into a GeoJSON string representation
+  def to_geojson_s
+    s = nil
+    if shapefile && shapefile.file && shapefile.file.file
+      File.open(shapefile.file.file, "r") do |file|
+        s = file.read
+      end
+    end
+    s
+  end
+
+  # Enqueue a conversion from a shapefile to GeoJSON
   def convert
     if shapefile_type != "application/json"
       Resque.enqueue(Shapefile, id)
     end
   end
 
+  # Unzip a shapefile archive
   def unzip
     random_dir = SecureRandom.hex(15)
     if !ENV.has_key?('SHAPEFILE_TMP_DIR')
@@ -129,14 +142,33 @@ class Shapefile < ActiveRecord::Base
   end
 
   def convert_to_geojson(fname)
+    full_filename = geojson_filename(fname)
+    converter = ShapefileConverterShapefileJS.new
+    json = converter.convert(fname)
+
+    success = false
+    f = File.new(full_filename, "w")
+    if f
+      f.write json
+      f.close
+      success = true
+    end
+    success ? full_filename : nil
+  end
+
+  def geojson_filename(fname)
+    dir = File.dirname(shapefile.file.file)
+    base_name = File.basename(fname, ".shp")
+    File.join(dir, base_name + ".json")
+  end
+
+  def convert_to_geojson_gdal(fname)
     if !File.exists?(fname)
       Rails.logger.info "Didn't find shapefile: #{fname}"
       return nil
     end
 
-    dir = File.dirname(shapefile.file.file)
-    base_name = File.basename(fname, ".shp")
-    full_filename = File.join(dir, base_name + ".json")
+    full_filename = geojson_filename(fname)
 
     begin
       ds = Gdal::Ogr.open(fname)

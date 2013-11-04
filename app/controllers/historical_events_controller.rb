@@ -71,10 +71,7 @@ class HistoricalEventsController < ApplicationController
     @historical_events = HistoricalEvent.all
     @map_data = HistoricalEvent.select("id, title, lat, lon")
 
-    @shapefiles = [ { "filename" => "/cntry1815.js",
-                      "name" => "cntry1815" },
-                  ]
-
+    @shapefiles = @historical_events.map { |he| he.shapefiles }.flatten
   end
 
   private

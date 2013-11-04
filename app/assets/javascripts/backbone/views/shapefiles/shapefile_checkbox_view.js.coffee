@@ -1,7 +1,7 @@
 WebOfHistory.Views.Shapefiles ||= {}
 
 class WebOfHistory.Views.Shapefiles.ShapefileCheckboxView extends Backbone.Marionette.ItemView
-  template: JST["backbone/templates/historical_events/checkbox_item"]
+  template: JST["backbone/templates/shapefiles/shapefile_checkbox_item"]
 
   events:
     "click .destroy" : "destroy"
@@ -9,7 +9,12 @@ class WebOfHistory.Views.Shapefiles.ShapefileCheckboxView extends Backbone.Mario
 
   tagName: "li"
 
-  toggle: () ->
+  initialize: (options) ->
+    this.options = options
+    @model = this.options.model
+
+  toggle: (event) ->
+    event.stopPropagation()
     @model.toggle()
 
   destroy: () ->
@@ -22,8 +27,8 @@ class WebOfHistory.Views.Shapefiles.ShapefileCheckboxView extends Backbone.Mario
     return @model.label()
 
   render: ->
-    console.log "render in ShapefileCheckboxView called"
     @$el.html(@template(@model.toJSON()))
     @$el.data("id", @model.id)
-    @$el.find("input").prop('checked', @model.isActive());
+    checkbox = @$el.find("input")
+    checkbox.prop('checked', @model.isActive())
     return this

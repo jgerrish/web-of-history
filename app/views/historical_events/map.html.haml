@@ -3,7 +3,7 @@
 
 -# TODO: better method of reading in JSON, create a Rails model for this
 :javascript
-  window.shapefiles = [];
+  window.shapefiles = {};
 
   $(function() {
     window.router = new WebOfHistory.Routers.HistoricalEventsRouter({historical_events: #{@historical_events.to_json(include: :shapefiles).html_safe}});
@@ -11,16 +11,17 @@
   });
 
 - @shapefiles.each do |shapefile|
-  = javascript_include_tag shapefile["filename"]
   :javascript
     var shapefile = #{shapefile.to_json};
-    window.shapefiles.push(shapefile["name"])
+    var json = #{shapefile.to_geojson_s};
+    console.log(shapefile["name"]);
+    console.log(shapefile["id"]);
+    window.shapefiles[shapefile["id"]] = json;
 
 :javascript
   window.map_data = #{@map_data.to_json};
 
   $(document).ready(function() {
-
     // add a marker in the given location,
     // and attach some popup content to it
     WebOfHistory.EventAggregator.trigger("init_finished");

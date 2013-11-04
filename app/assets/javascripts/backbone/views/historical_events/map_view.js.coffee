@@ -6,9 +6,16 @@ class WebOfHistory.Views.HistoricalEvents.MapView extends Backbone.View
 
   initialize: (options) ->
     @options = options
+    if @options.historical_events
+      @collection = @options.historical_events
+
     tm = _.bind(this.toggleMarker, this)
     WebOfHistory.EventAggregator.on "historical_event:toggled", (model) ->
       tm(model)
+
+    tl = _.bind(this.toggleLayer, this)
+    WebOfHistory.EventAggregator.on "shapefile:toggled", (model) ->
+      tl(model)
 
     # This doesn't seem right, investigate if Marionette has a way of binding
     newfunc = _.bind(this.initMap, this, this)
@@ -33,9 +40,18 @@ class WebOfHistory.Views.HistoricalEvents.MapView extends Backbone.View
 
   initShapefiles: () ->
     map = this.map
+
     # Add shapefiles to the map
-    #window.shapefiles.forEach (element, index, array) ->
-    #  L.geoJson(window.shapefiles[element]).addTo(map)
+    shapefile_list = @collection.pluck("shapefiles")
+    shapefiles = shapefile_list.map (s) ->
+      id = s.pluck("id")
+      return id
+    shapefiles = _.flatten(shapefiles)
+
+    @layers = {}
+    layers = @layers
+    shapefiles.forEach (element, index, array) ->
+      layers[element] = L.geoJson(window.shapefiles[element]).addTo(map)
     return
 
   initMarkers: () ->
@@ -52,7 +68,11 @@ class WebOfHistory.Views.HistoricalEvents.MapView extends Backbone.View
     else
       this.map.removeLayer(@markers[model.get('id')])
 
+  toggleLayer: (model) ->
+    if model.isActive()
+      this.map.addLayer(@layers[model.get('id')])
+    else
+      this.map.removeLayer(@layers[model.get('id')])
+
   render: ->
-    #@$el.html(@template(@model.toJSON()))
-    #$()
     return this

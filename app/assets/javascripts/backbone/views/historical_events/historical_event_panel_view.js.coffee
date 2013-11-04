@@ -23,12 +23,9 @@ class WebOfHistory.Views.HistoricalEvents.HistoricalEventPanelView extends Backb
     return false
 
   appendHtml: (collectionView, itemView) ->
-    console.log(itemView.el)
-    console.log(collectionView.$("div#layers-panel-body-" + @model.id + " ul"))
     collectionView.$("div#layers-panel-body-" + @model.id + " ul").append(itemView.el)
 
   render: () ->
-    console.log("render")
     Backbone.Marionette.CompositeView.prototype.render.call(this)
     if this.collection.length == 0
       @$el.find(".collapse").collapse()
