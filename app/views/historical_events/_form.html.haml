@@ -16,5 +16,10 @@
     = f.association :shapefiles, collection: Shapefile.json, include_blank: true, |
                     input_html: { class: 'chosen-select form-control' }
 
+    = f.association :historical_locations, |
+                    collection: HistoricalLocation.all, |
+                    include_blank: true, |
+                    input_html: { class: 'chosen-select form-control' }
+
   .form-actions
     = f.button :submit

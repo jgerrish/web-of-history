@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @historical_location.name
+
+%p
+  %span.geo
+    %b latitude:
+    %span.latitude= @historical_location.lat
+    %b longitude:
+    %span.longitude= @historical_location.lon
+
+%p
+  %b Historical events at this location:
+  = render :partial => "historical_events/compact_list", |
+           :locals => { :historical_events => @historical_location.historical_events }
+
+= link_to 'Edit', edit_historical_location_path(@historical_location)
+\|
+= link_to 'Back', historical_locations_path

@@ -1,0 +1,15 @@
+%table.table.table-striped.linkable-table
+  %thead
+    %tr
+      %th name
+      %th latitude
+      %th longitude
+
+  %tbody
+    - historical_locations.each do |historical_location|
+      %tr{:id => "historical_location-#{historical_location.id}",
+          :class => "linkable-table-row",
+          :data => { :rowlink => "#{historical_location_path(historical_location)}" } }
+        %td= historical_location.name
+        %td= historical_location.lat
+        %td= historical_location.lon

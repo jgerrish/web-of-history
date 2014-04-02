@@ -1,10 +1,10 @@
-= simple_form_for(@historical_source) do |f|
+= simple_form_for(@historical_location) do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :name
-    = f.input :subject
-    = f.input :note
+    = f.input :lat
+    = f.input :lon
 
   .form-actions
     = f.button :submit

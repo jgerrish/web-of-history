@@ -11,19 +11,24 @@
   = @historical_event.date_precision
 %p
   %b Event start date:
-  = @historical_event.event_start_date.as_historical_date('Y')
+  = @historical_event.event_start_date.as_historical_date(@historical_event.date_precision)
 %p
   %b Event end date:
-  = @historical_event.event_end_date.as_historical_date('Y')
+  = @historical_event.event_end_date.as_historical_date(@historical_event.date_precision)
 %p
   %b Description:
   = @historical_event.description
 %p
-  %b Lat:
-  = @historical_event.lat
+  %span.geo
+    %b latitude:
+    %span.latitude= @historical_event.lat
+    %b longitude:
+    %span.longitude= @historical_event.lon
+
 %p
-  %b Lon:
-  = @historical_event.lon
+  %b Locations spanned:
+  = render :partial => "historical_locations/compact_list", |
+           :locals => { :historical_locations => @historical_event.historical_locations }
 
 = link_to 'Edit', edit_historical_event_path(@historical_event)
 \|

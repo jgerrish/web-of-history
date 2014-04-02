@@ -10,6 +10,10 @@
       %li
         = link_to 'events', historical_events_path
 
+    - if user_signed_in?
+      %li
+        = link_to 'locations', historical_locations_path
+
 
   %ul.nav.navbar-nav.navbar-right
     - if user_signed_in?

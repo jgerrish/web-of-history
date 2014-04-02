@@ -1,6 +1,8 @@
 require 'resque/server'
 
 WebOfHistory::Application.routes.draw do
+  resources :historical_locations
+
   mount Resque::Server.new, :at => "/resque"
 
   resources :shapefiles

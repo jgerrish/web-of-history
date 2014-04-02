@@ -1,0 +1,15 @@
+%table.table.table-striped.linkable-table
+  %thead
+    %tr
+      %th title
+      %th event start date
+      %th event end date
+
+  %tbody
+    - historical_events.each do |historical_event|
+      %tr{:id => "historical_event-#{historical_event.id}",
+          :class => "linkable-table-row",
+          :data => { :rowlink => "#{historical_event_path(historical_event)}" } }
+        %td= historical_event.title
+        %td= historical_event.event_start_date
+        %td= historical_event.event_end_date

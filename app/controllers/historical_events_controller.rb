@@ -83,7 +83,7 @@ class HistoricalEventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def historical_event_params
-    params.require(:historical_event).permit(:historical_source_id, :title, :date_precision, :event_start_date, :event_end_date, :description, :lat, :lon, :shapefile_ids => [], :shapefile_attributes => [:id])
+    params.require(:historical_event).permit(:historical_source_id, :title, :date_precision, :event_start_date, :event_end_date, :description, :lat, :lon, :shapefile_ids => [], :shapefile_attributes => [:id], :historical_location_ids => [], :historical_location_attributes => [:id])
   end
 
 end

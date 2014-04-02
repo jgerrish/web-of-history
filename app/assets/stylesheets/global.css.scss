@@ -39,6 +39,10 @@ h1 {
   }
 }
 
+.navbar-nav.navbar-right:last-child {
+  margin: 0px;
+}
+
 .list-group-rhs {
   text-align: right;
 }

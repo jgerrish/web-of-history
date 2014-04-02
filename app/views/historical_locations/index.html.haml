@@ -1,0 +1,25 @@
+#command-bar.row
+  .command-bar-left.col-md-8
+    %h1 historical locations
+  .command-bar-right.col-md-4.row
+    = button_to 'New Location', new_historical_location_path, class: "btn btn-primary", method: :get
+
+%table.table.table-striped.linkable-table
+  %thead
+    %tr
+      %th name
+      %th latitude
+      %th longitude
+      %th
+      %th
+
+  %tbody
+    - @historical_locations.each do |historical_location|
+      %tr{:id => "historical_location-#{historical_location.id}",
+          :class => "linkable-table-row",
+          :data => { :rowlink => "#{historical_location_path(historical_location)}" } }
+        %td= historical_location.name
+        %td= historical_location.lat
+        %td= historical_location.lon
+        %td= link_to 'Edit', edit_historical_location_path(historical_location)
+        %td= link_to 'Destroy', historical_location, :method => :delete, :data => { :confirm => 'Are you sure?' }

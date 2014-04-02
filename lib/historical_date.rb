@@ -12,6 +12,8 @@ module HistoricalDate
 
     full_date = self.to_s
 
+    Rails.logger.info "[" + precision + "]"
+
     if precision == 'Y'
       full_date = y
     elsif precision == 'M'

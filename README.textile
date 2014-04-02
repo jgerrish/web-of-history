@@ -1,5 +1,11 @@
 h1. Web Of History
 
+Web of History is a web app that provides a method for studying
+history and science by providing contextual browsing interfaces to
+historical events.  This includes a map interface and timeline to show
+events and how they relate to each other.
+
+
 This application was generated with the "rails_apps_composer":https://github.com/RailsApps/rails_apps_composer gem provided by the "RailsApps Project":http://railsapps.github.io/.
 
 h2. Diagnostics

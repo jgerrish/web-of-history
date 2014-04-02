@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024182658) do
+ActiveRecord::Schema.define(version: 20131217004817) do
 
   create_table "historical_events", force: true do |t|
     t.integer  "historical_source_id"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20131024182658) do
 
   add_index "historical_events", ["historical_source_id"], name: "index_historical_events_on_historical_source_id"
 
+  create_table "historical_events_historical_locations", force: true do |t|
+    t.integer  "historical_event_id",    null: false
+    t.integer  "historical_location_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "historical_events_historical_locations", ["historical_event_id", "historical_location_id"], name: "hehl_hehl_id", unique: true
+  add_index "historical_events_historical_locations", ["historical_event_id"], name: "hehl_historical_event_id"
+  add_index "historical_events_historical_locations", ["historical_location_id"], name: "hehl_historical_location_id"
+
   create_table "historical_events_shapefiles", force: true do |t|
     t.integer  "historical_event_id"
     t.integer  "shapefile_id"
@@ -38,11 +49,20 @@ ActiveRecord::Schema.define(version: 20131024182658) do
   add_index "historical_events_shapefiles", ["historical_event_id"], name: "index_historical_events_shapefiles_on_historical_event_id"
   add_index "historical_events_shapefiles", ["shapefile_id"], name: "index_historical_events_shapefiles_on_shapefile_id"
 
+  create_table "historical_locations", force: true do |t|
+    t.string   "name",       null: false
+    t.float    "lat"
+    t.float    "lon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "historical_sources", force: true do |t|
     t.string   "name"
     t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "note"
   end
 
   create_table "roles", force: true do |t|
