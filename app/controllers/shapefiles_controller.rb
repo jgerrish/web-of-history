@@ -31,6 +31,8 @@ class ShapefilesController < ApplicationController
         format.html { redirect_to admin_path, notice: 'Shapefile was successfully created.' }
         format.json { render action: 'show', status: :created, location: @shapefile }
       else
+        Rails.logger.info @shapefile.errors.inspect
+        Rails.logger.info @shapefile.inspect
         format.html { render action: 'new' }
         format.json { render json: @shapefile.errors, status: :unprocessable_entity }
       end

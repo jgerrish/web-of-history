@@ -1,0 +1,17 @@
+= simple_form_for(@event_group) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+
+    = f.association :maps, collection: Map.all, include_blank: true, |
+                    input_html: { class: 'chosen-select form-control' }
+
+    = f.association :shapefiles, collection: Shapefile.json, include_blank: true, |
+                    input_html: { class: 'chosen-select form-control' }
+
+    = f.association :historical_events, collection: HistoricalEvent.all, include_blank: true, |
+                    input_html: { class: 'chosen-select form-control' }
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'

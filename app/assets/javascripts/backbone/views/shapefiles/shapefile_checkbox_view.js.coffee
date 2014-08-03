@@ -14,6 +14,7 @@ class WebOfHistory.Views.Shapefiles.ShapefileCheckboxView extends Backbone.Mario
     @model = this.options.model
 
   toggle: (event) ->
+    console.log('toggle in ShapefileCheckboxView')
     event.stopPropagation()
     @model.toggle()
 

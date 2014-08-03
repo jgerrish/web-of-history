@@ -1,0 +1,11 @@
+= simple_form_for(@map) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :center_lat
+    = f.input :center_lon
+    = f.input :zoom
+
+  .form-actions
+    = f.button :submit

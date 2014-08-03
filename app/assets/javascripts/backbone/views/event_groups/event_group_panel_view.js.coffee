@@ -1,9 +1,9 @@
-WebOfHistory.Views.HistoricalEvents ||= {}
+WebOfHistory.Views.HistoricalEventGroups ||= {}
 
-class WebOfHistory.Views.HistoricalEvents.HistoricalEventPanelView extends Backbone.Marionette.CompositeView
-  template: JST["backbone/templates/historical_events/historical_event_panel"]
+class WebOfHistory.Views.HistoricalEventGroups.HistoricalEventGroupPanelView extends Backbone.Marionette.CompositeView
+  template: JST["backbone/templates/event_groups/event_group_panel"]
 
-  events:
+  locations:
     "click .destroy" : "destroy"
 
   tagName: "div"

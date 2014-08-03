@@ -71,6 +71,7 @@ class HistoricalEventsController < ApplicationController
     @historical_events = HistoricalEvent.all
     @map_data = HistoricalEvent.select("id, title, lat, lon")
 
+    # TODO: Fix this, getting duplicate shapefiles
     @shapefiles = @historical_events.map { |he| he.shapefiles }.flatten
   end
 

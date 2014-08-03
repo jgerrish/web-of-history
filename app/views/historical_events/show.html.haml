@@ -9,12 +9,16 @@
 %p
   %b Date precision:
   = @historical_event.date_precision
-%p
-  %b Event start date:
-  = @historical_event.event_start_date.as_historical_date(@historical_event.date_precision)
-%p
-  %b Event end date:
-  = @historical_event.event_end_date.as_historical_date(@historical_event.date_precision)
+
+- if @historical_event.event_start_date
+  %p
+    %b Event start date:
+    = @historical_event.event_start_date.as_historical_date(@historical_event.date_precision)
+
+- if @historical_event.event_end_date
+  %p
+    %b Event end date:
+    = @historical_event.event_end_date.as_historical_date(@historical_event.date_precision)
 %p
   %b Description:
   = @historical_event.description

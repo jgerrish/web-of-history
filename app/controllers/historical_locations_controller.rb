@@ -61,6 +61,14 @@ class HistoricalLocationsController < ApplicationController
     end
   end
 
+  # GET /historical_locations/map
+  def map
+    @historical_locations = HistoricalLocation.all
+    @map_data = HistoricalLocation.select("id, name, lat, lon")
+
+    @shapefiles = @historical_locations.map { |l| l.historical_events }.flatten.map { |he| he.shapefiles }.flatten
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_historical_location

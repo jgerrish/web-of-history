@@ -8,3 +8,11 @@ bindRowClick = () ->
 # handlers
 $(document).on 'page:load', bindRowClick
 $(document).ready bindRowClick
+
+# Enable Chosen components on page:load (Turbolinks) and document ready
+$(document).on 'ready page:load', ->
+  # enable chosen js
+  $('.chosen-select').chosen
+    allow_single_deselect: true
+    no_results_text: 'No results matched'
+    width: '100%'

@@ -1,0 +1,41 @@
+= stylesheet_link_tag "/assets/leaflet/leaflet"
+= javascript_include_tag "/assets/leaflet/leaflet-src"
+
+-# TODO: better method of reading in JSON, create a Rails model for this
+:javascript
+  window.shapefiles = {};
+
+  $(function() {
+  });
+
+- @shapefiles.each do |shapefile|
+  :javascript
+    var shapefile = #{shapefile.to_json};
+    var json = #{shapefile.to_geojson_s};
+    window.shapefiles[shapefile["id"]] = json;
+
+:javascript
+  window.map_data = #{@map_data.to_json};
+
+  $(document).ready(function() {
+    // add a marker in the given location,
+    // and attach some popup content to it
+    //window.router = new WebOfHistory.Routers.HistoricalLocationsRouter({historical_locations: #{@historical_locations.to_json(include: { historical_events: { include: :shapefiles } }).html_safe}});
+    window.router = new WebOfHistory.Routers.HistoricalLocationsRouter({historical_locations: #{@historical_locations.to_json(include: { historical_events: { include: :shapefiles } }).html_safe}});
+    Backbone.history.start({ pushState: true, hashChange: false });
+    WebOfHistory.EventAggregator.trigger("init_finished");
+  });
+
+.row
+  .col-xs-6.col-md-4
+    %h2.top-header locations
+    #locations-panel.row
+      #historical_locations.col-md-6
+      #map-chart.col-md-6
+      -# = render partial: "historical_events/check_list", locals: { historical_events: @historical_events }
+
+    %h2 layers
+    #layers-accordion.panel-group
+
+  .col-xs-12.col-md-8
+    #map

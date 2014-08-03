@@ -49,7 +49,7 @@ class ShapefileUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    %w(shp json zip)
+    %w(shp json geojson zip)
   end
 
   # Override the filename of the uploaded files:

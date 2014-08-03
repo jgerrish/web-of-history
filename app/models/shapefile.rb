@@ -12,6 +12,11 @@ class Shapefile < ActiveRecord::Base
   has_many :historical_events_shapefiles
   has_many :historical_events, through: :historical_events_shapefiles
 
+  has_many :event_groups_shapefiles
+  has_many :event_groups, through: :event_groups_shapefiles
+
+  accepts_nested_attributes_for :event_groups, :allow_destroy => true
+
   scope :json, -> { where(shapefile_type: 'application/json') }
 
 

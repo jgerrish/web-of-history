@@ -1,0 +1,25 @@
+#command-bar.row
+  .command-bar-left.col-md-8
+    %h1 event groups
+  .command-bar-right.col-md-4.row
+    = button_to 'New Event Group', new_event_group_path, class: "btn btn-default", method: :get
+
+%table.table.table-striped.linkable-table
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+      %th
+
+  %tbody
+    - @event_groups.each do |event_group|
+      %tr{:id => "event_group-#{event_group.id}",
+          :class => "linkable-table-row",
+          :data => { :rowlink => "#{event_group_path(event_group)}" } }
+        %td= event_group.name
+        %td= link_to 'Show', event_group
+        %td= button_to "Map", map_event_group_path(event_group), class: "btn btn-default", method: :get
+        %td= link_to 'Edit', edit_event_group_path(event_group)
+        %td= link_to 'Delete', event_group, :method => :delete, :data => { :confirm => 'Are you sure?' }

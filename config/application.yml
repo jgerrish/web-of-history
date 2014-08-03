@@ -9,9 +9,9 @@
 #
 GMAIL_USERNAME: Your_Username
 GMAIL_PASSWORD: Your_Password
-ADMIN_NAME: YOUR_NAME
-ADMIN_EMAIL: YOUR_EMAIL
-ADMIN_PASSWORD: YOUR_PASSWORD
+ADMIN_NAME: josh
+ADMIN_EMAIL: jgerrish@gmail.com
+ADMIN_PASSWORD: changeme
 ROLES: [admin, user, VIP]
 
 SHAPEFILE_TMP_DIR: tmp/shapefiles

@@ -11,7 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217004817) do
+ActiveRecord::Schema.define(version: 20140521045059) do
+
+  create_table "event_groups", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_groups", ["name"], name: "index_event_groups_on_name", unique: true
+
+  create_table "event_groups_historical_events", force: true do |t|
+    t.integer  "event_group_id"
+    t.integer  "historical_event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_groups_historical_events", ["event_group_id", "historical_event_id"], name: "eghe_eghe_id", unique: true
+  add_index "event_groups_historical_events", ["event_group_id"], name: "index_event_groups_historical_events_on_event_group_id"
+  add_index "event_groups_historical_events", ["historical_event_id"], name: "index_event_groups_historical_events_on_historical_event_id"
+
+  create_table "event_groups_maps", force: true do |t|
+    t.integer  "event_group_id"
+    t.integer  "map_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_groups_maps", ["event_group_id", "map_id"], name: "egm_egm_id", unique: true
+  add_index "event_groups_maps", ["event_group_id"], name: "index_event_groups_maps_on_event_group_id"
+  add_index "event_groups_maps", ["map_id"], name: "index_event_groups_maps_on_map_id"
+
+  create_table "event_groups_shapefiles", force: true do |t|
+    t.integer  "event_group_id"
+    t.integer  "shapefile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_groups_shapefiles", ["event_group_id", "shapefile_id"], name: "egs_egs_id", unique: true
+  add_index "event_groups_shapefiles", ["event_group_id"], name: "index_event_groups_shapefiles_on_event_group_id"
+  add_index "event_groups_shapefiles", ["shapefile_id"], name: "index_event_groups_shapefiles_on_shapefile_id"
 
   create_table "historical_events", force: true do |t|
     t.integer  "historical_source_id"
@@ -64,6 +105,17 @@ ActiveRecord::Schema.define(version: 20131217004817) do
     t.datetime "updated_at"
     t.text     "note"
   end
+
+  create_table "maps", force: true do |t|
+    t.string   "name",       null: false
+    t.float    "center_lat"
+    t.float    "center_lon"
+    t.float    "zoom"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "maps", ["name"], name: "index_maps_on_name", unique: true
 
   create_table "roles", force: true do |t|
     t.string   "name"

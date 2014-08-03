@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @map.name
+%p
+  %b Center lat:
+  = @map.center_lat
+%p
+  %b Center lon:
+  = @map.center_lon
+%p
+  %b Zoom:
+  = @map.zoom
+
+= link_to 'Edit', edit_map_path(@map)
+\|
+= link_to 'Back', maps_path

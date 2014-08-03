@@ -2,9 +2,9 @@
   .command-bar-left.col-md-8
     %h1 historical events
   .command-bar-right.col-md-4.row
-    = button_to "Timeline", timeline_historical_events_path, class: "btn", method: :get
-    = button_to "Map", map_historical_events_path, class: "btn", method: :get
-    = button_to 'New Event', new_historical_event_path, class: "btn", method: :get
+    = button_to "Timeline", timeline_historical_events_path, class: "btn btn-default", method: :get
+    = button_to "Map", map_historical_events_path, class: "btn btn-default", method: :get
+    = button_to 'New Event', new_historical_event_path, class: "btn btn-default", method: :get
 
 %table.table.table-striped.linkable-table
   %thead

@@ -5,6 +5,15 @@ class WebOfHistory.Routers.HistoricalEventsRouter extends Backbone.Router
 
     @historical_events = new WebOfHistory.Collections.HistoricalEventsCollection(event_aggregator: @event_aggregator)
     @historical_events.reset options.historical_events
+    col = new WebOfHistory.Collections.ShapefilesCollection()
+
+    shapefiles = @historical_events.reduce (a, v) ->
+        a.add(v.get('shapefiles').toJSON())
+        return a
+      , col
+
+    @map = new WebOfHistory.Models.Map(locations: @historical_events, \
+                                       shapefiles: shapefiles)
 
   routes:
     "new"      : "newHistoricalEvent"
@@ -23,12 +32,14 @@ class WebOfHistory.Routers.HistoricalEventsRouter extends Backbone.Router
     $("#historical_events").html(@view.render().el)
 
   map: ->
-    @view = new WebOfHistory.Views.HistoricalEvents.CheckboxListView(historical_events: @historical_events)
+    testView = WebOfHistory.Views.EmptyBox.CheckboxListView.extend({id: "historical-events-list"})
+    @view = new testView(checkboxes: @historical_events)
     $("#historical_events").html(@view.render().el)
-    @panel_view = new WebOfHistory.Views.HistoricalEvents.PanelGroupView(historical_events: @historical_events, collection: @historical_events)
+
+    @panel_view = new WebOfHistory.Views.EmptyBox.PanelGroupView(historical_events: @historical_events, collection: @historical_events)
     $("#layers-accordion").html(@panel_view.render().el)
-    @map_view = new WebOfHistory.Views.HistoricalEvents.MapView(historical_events: @historical_events)
-    #$("#").html(@view.render().el)
+
+    @map_view = new WebOfHistory.Views.EmptyBox.MapView(map: @map)
 
   show: (id) ->
     historical_event = @historical_events.get(id)

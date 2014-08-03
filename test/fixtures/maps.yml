@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  center_lat: 1.5
+  center_lon: 1.5
+  zoom: 1.5
+
+two:
+  name: MyString
+  center_lat: 1.5
+  center_lon: 1.5
+  zoom: 1.5

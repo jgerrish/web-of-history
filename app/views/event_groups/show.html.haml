@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @event_group.name
+
+= link_to 'Edit', edit_event_group_path(@event_group)
+\|
+= link_to 'Back', event_groups_path

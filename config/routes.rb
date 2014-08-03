@@ -1,7 +1,16 @@
 require 'resque/server'
 
 WebOfHistory::Application.routes.draw do
-  resources :historical_locations
+
+  resources :event_groups do
+    get :map, on: :member
+  end
+
+  resources :maps
+
+  resources :historical_locations do
+    get :map, on: :collection
+  end
 
   mount Resque::Server.new, :at => "/resque"
 

@@ -1,6 +1,37 @@
 Web Of History
 ========================
 
+A Ruby on Rails web application to help learn science and history
+
+Prerequisites
+=============
+
+The Shapefile conversion require the installation of Redis to handle
+background conversion.  On Ubuntu Linux, install with the following:
+
+apt-get install redis-server
+
+
+Setup
+=====
+
+To get started with this application:
+
+
+Edit the application configuration file and create an initial user:
+
+config/application.yml
+
+
+
+Then run the following:
+
+bundle install
+rake db:setup
+rails s
+
+
+
 This application was generated with the rails_apps_composer gem:
 https://github.com/RailsApps/rails_apps_composer
 provided by the RailsApps Project:

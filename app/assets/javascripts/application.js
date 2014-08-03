@@ -23,4 +23,5 @@
 //= require backbone.marionette
 //= require backbone/web_of_history
 //= require backbone/models/shapefile
+//= require d3
 //= require_tree .
